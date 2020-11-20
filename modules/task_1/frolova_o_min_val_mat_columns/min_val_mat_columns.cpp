@@ -32,6 +32,7 @@ void getParallelMin(int* matrix_array, int* parallel_array, int rows, int column
        delta++;
     MPI_Bcast(matrix_array, rows * columns, MPI_INT, 0, MPI_COMM_WORLD);
     for (int i = delta * rank; i < delta * (rank + 1); i++) {
+         if (i > columns) break;
          min = matrix_array[i];
          for (int j = 0; j < rows; j++) {
              if (matrix_array[i + j * columns] <= min) {
@@ -47,6 +48,7 @@ void getParallelMin(int* matrix_array, int* parallel_array, int rows, int column
     if (rank == 0) {
         for (int i = 1; i < size; i++) {
             for (int j = 0; j < delta; j++) {
+                if (i * delta + j > columns) break;
                 MPI_Status status;
                 MPI_Recv(&min, 1, MPI_INT, i, 15, MPI_COMM_WORLD, &status);
                 parallel_array[i * delta + j] = min;

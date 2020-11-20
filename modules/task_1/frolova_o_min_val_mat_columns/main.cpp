@@ -112,8 +112,8 @@ TEST(Parallel_Operations_MPI, Test_Square_Matrix_Delta_Not_Divisible) {
 TEST(Parallel_Operations_MPI, Test_Not_Square_Matrix_Delta_Divisible) {
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    int rows = 4;
-    int columns = 8;
+    int rows = 100;
+    int columns = 101;
     int size = rows * columns;
     int** matrix;
     int* matrix_array, * check_array, * parallel_array;
@@ -138,7 +138,7 @@ TEST(Parallel_Operations_MPI, Test_Not_Square_Matrix_Delta_Divisible) {
 TEST(Parallel_Operations_MPI, Test_Not_Square_Matrix_Delta_Not_Divisible) {
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    int rows = 5;
+    int rows = 4;
     int columns = 7;
     int size = rows * columns;
     int** matrix;

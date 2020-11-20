@@ -19,7 +19,7 @@ TEST(Sequential_Integration_Test, Throws_Exception_When_Function_Is_Empty) {
 
 TEST(Sequential_Integration_Test, Return_Right_Value) {
   double integral = integrationSequential(function, 0, 2, 16);
-  ASSERT_EQ(integral, 2.6640625);
+  ASSERT_DOUBLE_EQ(integral, 2.6640625);
 }
 
 TEST(Parallel_Integration_Test, Throws_When_Left_Border_Less_Then_Right) {
@@ -37,13 +37,13 @@ TEST(Parallel_Integration_Test, Throws_Exception_When_Function_Is_Empty) {
 
 TEST(Parallel_Integration_Test, Return_Right_Value) {
   double integral = integrationParallel(function, 0, 2, 16);
-  ASSERT_EQ(integral, 2.6640625);
+  ASSERT_DOUBLE_EQ(integral, 2.6640625);
 }
 
 TEST(Compare_Test, Parralel_Equals_Sequential) {
-  double sequential_integral = integrationSequential(function, 0, 3, 16);
-  double parallel_integral = integrationParallel(function, 0, 3, 16);
-  ASSERT_EQ(sequential_integral, parallel_integral);
+  double sequential_integral = integrationSequential(function, 0, 3, 10001);
+  double parallel_integral = integrationParallel(function, 0, 3, 10001);
+  ASSERT_DOUBLE_EQ(sequential_integral, parallel_integral);
 }
 
 int main(int argc, char** argv) {
